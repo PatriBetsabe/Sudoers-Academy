@@ -97,44 +97,52 @@ public class RegistroUsuario extends HttpServlet {
     	return false;
     }
     
+    
+    public static boolean validaEmail(String email) {
+    	boolean allValid = false;
+    	// Valida email
+			String regex_email = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+"; 
+			Pattern pattern_e = Pattern.compile(regex_email);
+			Matcher matcher_email = pattern_e.matcher(email);
 
-    public boolean validaRegex(HttpServletRequest request, HttpServletResponse response, String nickname, String email, String password) throws ServletException, IOException {
-    	// Este metodo comprueba que los datos introducidos
-    	// sean válidos con Regex.
-    	
-    	Boolean allValid=false;
-		
+			if (matcher_email.matches()) {
+				allValid= true;
+			}
+		return allValid;
+    }
+    
+    public static boolean validaNickName(String nickname) {
     	// Valida nickname
-		String regex_nickname = "^[a-z0-9_-]{3,15}$"; 
+    	String regex_nickname = "^[a-z0-9_-]{3,15}$"; 
 		Pattern pattern_n = Pattern.compile(regex_nickname);
 		Matcher matcher_nickname = pattern_n.matcher(nickname);
 
-		if (matcher_nickname.matches()) {
-			allValid= true;
-		}
-		 
-		// Valida email
-		String regex_email = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+"; 
-		Pattern pattern_e = Pattern.compile(regex_email);
-		Matcher matcher_email = pattern_e.matcher(email);
+			if (matcher_nickname.matches()) {
+				return true;
+			}
+		return false;
+    }
 
-		if (matcher_email.matches()) {
-			allValid= true;
-		}
+    public static boolean validaPassword(String password) {
+    	// Valida password
+	    	String regex_password = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
+			Pattern pattern_p = Pattern.compile(regex_password);
+			Matcher matcher_password = pattern_p.matcher(password);
 
-		// Valida password
-		String regex_password = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
-		Pattern pattern_p = Pattern.compile(regex_password);
-		Matcher matcher_password = pattern_p.matcher(password);
-		
-		if (matcher_password.matches()) {
-			allValid=true;
-		}
-		
-		if (!allValid) {
+			if (matcher_password.matches()) {
+				return  true;
+			}
+		return false;
+    }
+    
+    public boolean validaRegex(HttpServletRequest request, HttpServletResponse response, String nickname, String email, String password) throws ServletException, IOException {
+    	// Este metodo comprueba que los datos introducidos
+    	// sean válidos con Regex.
+  
+		if (!this.validaEmail(email) && !this.validaNickName(nickname) && !this.validaPassword(password)) {
 			getServletContext().getRequestDispatcher("/LoginNoOk.html").forward(request, response);
 		}
-		return allValid;
+		return true;
     }
     
     public void insertaUser(String nickname, String email, String password) {
