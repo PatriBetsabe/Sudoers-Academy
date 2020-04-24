@@ -2,3 +2,6 @@
 .project
 .settings/
 build/
+/.metadata/
+/db.db
+/target/
