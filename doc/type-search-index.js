@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"main.java","l":"Login"},{"p":"main.java","l":"RegistroUsuario"},{"p":"main.java","l":"SQLiteJDBC"},{"p":"test.java","l":"TestRegistoUsuario"}]
