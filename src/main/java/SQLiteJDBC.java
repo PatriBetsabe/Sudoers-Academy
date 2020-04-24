@@ -1,4 +1,4 @@
-package es.lamadrid;
+package main.java;
 
 import java.sql.*;
 

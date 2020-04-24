@@ -1,6 +1,8 @@
+package test.java;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import es.lamadrid.*;
+
+import main.java.RegistroUsuario;
 
 import org.junit.Test;
 
