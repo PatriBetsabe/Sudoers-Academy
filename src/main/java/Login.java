@@ -28,6 +28,11 @@ public class Login extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
+    /**
+     * Given a email make sure what that is correct
+     * @param email
+     * @return boolean
+     */
     public boolean existeixEmail(String email) {
     	//Comprueba que el email existe en la base de datso
     	Connection con = null;
