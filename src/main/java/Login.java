@@ -1,11 +1,12 @@
 package main.java;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,35 +16,38 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class Login
+ * @author patricia
+ * @see https://github.com/PatriBetsabe/Sudoers-Academy
  */
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger("main.java.Login");
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
     }
     
     /**
-     * Given a email make sure what that is correct
+     * Given a email look in the database if the email exists.
      * @param email
-     * @return boolean
+     * @return true if exists email.
+     * @throws SQLException 
      */
-    public boolean existeixEmail(String email) {
-    	//Comprueba que el email existe en la base de datso
+    public boolean existeixEmail(String email) throws SQLException {
     	Connection con = null;
     	Statement stmt = null;
+    	ResultSet rs = null;
     	
     	try {
     		SQLiteJDBC db = new SQLiteJDBC();
     		con = db.conectar();
     		
     		stmt = con.createStatement();
-    		ResultSet rs = stmt.executeQuery("SELECT * "
+    		rs = stmt.executeQuery("SELECT * "
     				+ "FROM USER "
     				+ "WHERE EMAIL LIKE '" + email + "'");
     		
@@ -51,54 +55,60 @@ public class Login extends HttpServlet {
     			String mail = rs.getString("EMAIL");
     			
     			if (mail.equals(email)) {
-    				System.out.println("Email existeix.");
-    				return false;
+    				LOGGER.log(Level.INFO, "Email existeix.");
+    				return true;
     			}
     		}
+    	} catch (Exception e) {
+    		LOGGER.log(Level.SEVERE, e.getMessage());
+    	    System.exit(0);
+    	} finally {
     		rs.close();
     		stmt.close();
     		con.close();
-    	} catch (Exception e) {
-    		System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-    	    System.exit(0);
     	}
-    	//System.out.println("Operation done successfully");
-    	return true;
+    	return false;
     }
     
-    public boolean coincideixPassword(String email, String password) {
-    	//Comprueba que el password sea del usuario
+    /**
+     * Given a User and password check that the password belongs to this user.
+     * @param email
+     * @param password
+     * @return
+     * @throws SQLException 
+     */
+    public boolean coincideixPassword(String email, String password) throws SQLException, NullPointerException {
     	Connection con = null;
     	Statement stmt = null;
+    	ResultSet rs = null;
+    	String pass = null;
     	
     	try {
     		SQLiteJDBC db = new SQLiteJDBC();
     		con = db.conectar();
-    		
     		stmt = con.createStatement();
     		
-    		ResultSet rs = stmt.executeQuery("SELECT * "
+    		rs = stmt.executeQuery("SELECT * "
     				+ "FROM USER "
     				+ "WHERE EMAIL = '"+ email
     				+ "' AND PASS = '" + password + "'");
     		
     		while (rs.next()) {
-    			String mail = rs.getString("EMAIL");
-    			
-    			if (mail.equals(null)) {
-    				System.out.println("Email no existeix.");
-    				return false;
-    			}
+    			pass = rs.getString("PASS");
+
     		}
+            
+        } catch (Exception e) {
+    		LOGGER.log(Level.SEVERE, e.getMessage());
+    	    System.exit(0);
+    	    
+    	} finally {
     		rs.close();
     		stmt.close();
     		con.close();
-    	} catch (Exception e) {
-    		System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-    	    System.exit(0);
     	}
-    	//System.out.println("Operation done successfully");
-    	return true;
+    	
+    	return pass.equals(password);
     }
     
     
@@ -109,49 +119,36 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		
-		/*
-		System.out.println("\nUser:" + email);
-		System.out.println("Password: "  + password);
-		
-		if("patri@hi.com".equals(email) && "pass".equals(password)) {
-			response(response, "login ok");
-		} else {
-			response(response, "Invalid login");
-		} */
-		
-		boolean matchPassword = false;
-		
-		PrintWriter out = response.getWriter();
-		
-		boolean existeUser = this.existeixEmail(email);
-		
-		if (!existeUser) {
-			System.out.println("El email no existe");
-		} else {
-			if (this.coincideixPassword(email, password)) {
-				System.out.println("Login successful!");
-			} else {
-				System.out.println("Contraseña inválida");
-			}
+		boolean existeUser = false;
+		try {
+			existeUser = this.existeixEmail(email);
+		} catch (SQLException e) {
+			response.sendRedirect("LoginNoOk.html");
 		}
 		
+		if (!existeUser) {
+			LOGGER.log(Level.INFO, "El email no existe.");
+			response.sendRedirect("LoginNoOk.html");
+		} else {
+			try {
+				if (this.coincideixPassword(email, password)) {
+					LOGGER.log(Level.INFO, "Login successful!");
+					response.sendRedirect("Home.html");
+				} else {
+					LOGGER.log(Level.INFO, "Contraseña inválida");
+					response.sendRedirect("LoginNoOk.html");
+				}
+			} catch (NullPointerException | SQLException | IOException e) {
+				response.sendRedirect("LoginNoOk.html");
+			}
+		}	
 	}
 	
-	private void response(HttpServletResponse response, String msg) throws IOException{
-		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<t1>" + msg + "</t1>");
-		out.println("</body>");
-		out.println("<html>");
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
