@@ -230,12 +230,12 @@ public class RegistroUsuario extends HttpServlet {
 			if (!existeUser) {
 				try {
 					this.insertaUser(nickname, email, password);
-					response.sendRedirect("Login.html");
+					response.sendRedirect("RegistroOk.html");
 				} catch (SQLException e) {
 					LOGGER.log(Level.SEVERE, e.getMessage());
 				}
 			} else {
-				response.sendRedirect("Home.html");
+				response.sendRedirect("LoginNoOk.html");
 			}
 		}
 	}
