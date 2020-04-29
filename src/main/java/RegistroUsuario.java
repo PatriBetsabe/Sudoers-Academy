@@ -109,7 +109,7 @@ public class RegistroUsuario extends HttpServlet {
      * @param email
      * @return true if it matches
      */
-    public boolean validaEmail(String email) {
+    public static boolean validaEmail(String email) {
     	boolean allValid = false;
 			String regexEmail = "[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+"; 
 			Pattern patternE = Pattern.compile(regexEmail);
@@ -126,7 +126,7 @@ public class RegistroUsuario extends HttpServlet {
      * @param nickname
      * @return true if it matches
      */
-    public boolean validaNickName(String nickname) {
+    public static boolean validaNickName(String nickname) {
     	String regexNickname = "^[a-z0-9_-]{3,15}$"; 
 		Pattern pattern = Pattern.compile(regexNickname);
 		Matcher matcherNickname = pattern.matcher(nickname);
@@ -142,7 +142,7 @@ public class RegistroUsuario extends HttpServlet {
      * @param password
      * @return true if it matches
      */
-    public boolean validaPassword(String password) {
+    public static boolean validaPassword(String password) {
 	    	String regexPassword = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$";
 			Pattern pattern = Pattern.compile(regexPassword);
 			Matcher matcherPassword = pattern.matcher(password);
