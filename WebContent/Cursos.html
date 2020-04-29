@@ -77,16 +77,14 @@
                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                <div class="divider-custom-line"></div>
            </div>
-           <!-- Cursos Grid Items-->
-           
-
-	                   <form action="Cursos" method="get" name="cursos">
+           <!-- Cursos Reserva Form-->
+	                   <form action="Cursos" method="post" name="cursos">
 	                   <h3>Selecciona tus cursos</h3>
 	                   <div class="row">
 	                   <div class="col-md-6 col-lg-4 mb-5 nopad text-center">	
 		                       <label class="image-checkbox">
 							      <img class="img-responsive h-100 w-100 p-4" src="python.png" />
-							      <input type="checkbox" name="image[]" value="" />
+							      <input type="checkbox" name="image[]" value="python" />
 							      <i class="fa fa-check hidden"></i>
 							    </label>
 		               </div>
@@ -94,7 +92,7 @@
 		               <div class="col-md-6 col-lg-4 nopad text-center">
 		                       <label class="image-checkbox">
 							      <img class="img-responsive h-100 w-100 p-4" src="Curso-maven.png" />
-							      <input type="checkbox" name="image[]" value="" />
+							      <input type="checkbox" name="image[]" value="maven" />
 							      <i class="fa fa-check hidden"></i>
 							    </label>
 		               </div>
@@ -102,7 +100,7 @@
 		               <div class="col-md-6 col-lg-4 nopad text-center">		
 		                       <label class="image-checkbox">
 							      <img class="img-responsive h-100 w-100 p-4" src="Curso-javascript.jpg" />
-							      <input type="checkbox" name="image[]" value="" />
+							      <input type="checkbox" name="image[]" value="javascript" />
 							      <i class="fa fa-check hidden"></i>
 							    </label>
 		               </div>
@@ -110,7 +108,7 @@
 		               <div class="col-md-6 col-lg-4 nopad text-center">		
 		                       <label class="image-checkbox">
 							      <img class="img-responsive h-100 w-100 p-4" src="Curso-laravel.png" />
-							      <input type="checkbox" name="image[]" value="" />
+							      <input type="checkbox" name="image[]" value="laravel" />
 							      <i class="fa fa-check hidden"></i>
 							    </label>
 		               </div>
@@ -118,7 +116,7 @@
 		               <div class="col-md-6 col-lg-4 nopad text-center">		
 		                       <label class="image-checkbox">
 							      <img class="img-responsive h-100 w-100 p-4" src="Curso-react.png" />
-							      <input type="checkbox" name="image[]" value="" />
+							      <input type="checkbox" name="image[]" value="react" />
 							      <i class="fa fa-check hidden"></i>
 							    </label>
 		               </div>
@@ -126,7 +124,7 @@
 		               <div class="col-md-6 col-lg-4 nopad text-center">
 		                       <label class="image-checkbox">
 							      <img class="img-responsive h-100 w-100 p-4" src="Curso-mongodb.png" />
-							      <input type="checkbox" name="image[]" value="" />
+							      <input type="checkbox" name="image[]" value="mongodb" />
 							      <i class="fa fa-check hidden"></i>
 							    </label>
 							    <br><br><br><br>
@@ -134,21 +132,21 @@
 		               
 		               <h3>Selecciona un método de pago</h3>
 		               <div id="metodopago" class="col-md-12 col-lg-12 nopad text-center">
-							 <label class="radio-inline p-4"><input type="radio" name="optradio" checked><h1>Cash</h1></label>
-							<label class="radio-inline p-4"><input type="radio" name="optradio"><h1>Credit card</h1></label>
-							<label class="radio-inline p-4"><input type="radio" name="optradio"><h1>PayPal</h1></label> 
+							 <label class="radio-inline p-4"><input type="radio" name="payment" value="cash" checked><h1>Cash</h1></label>
+							<label class="radio-inline p-4"><input type="radio" name="payment" value="credit" ><h1>Credit card</h1></label>
+							<label class="radio-inline p-4"><input type="radio" name="payment" value="paypal" ><h1>PayPal</h1></label> 
 		               </div>
 		               
 		               <div class="col-md-12 col-lg-12">
 		               			<br><br><br><br>
-                              <label for="exampleInputEmail1"><h3>Nickname*</h3></label>
-                              <input type="text"  name="nickname" class="form-control" id="nickname" aria-describedby="emailHelp" value=""></br>
+                              <label><h3>Nickname*</h3></label>
+                              <input type="text"  name="nickname" maxlength="10"  minlength="3" class="form-control" id="nickname" ></br>
                        </div>
       
       
       					<div class="col-md-12 col-lg-12">
                               <label ><h3>Grade*</h3></label>
-                               <select class="browser-default custom-select">
+                               <select name="grade" class="browser-default custom-select">
 								  <option selected value="1">Basic</option>
 								  <option value="2">Medium</option>
 								  <option value="3">High</option>
@@ -159,14 +157,32 @@
       					<div class="col-lg-6 text-center offset-3">
       					
                               <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm ">Send</button>
+                              <br><br><br><br>
                         </div>
 
 					    </div>
 	                   </form>
-	                
-
-	   </div>
-               
+	                   
+	                   
+	         <!-- Cursos Comment Form-->
+                <form action="Cursos" method="get" name="comment">
+	                <h3>Escribe un comentario</h3>
+	                <div class="row">
+	                	<div class="col-md-12 col-lg-12">	
+                          <label for="exampleInputEmail1"><h3>Nickname*</h3></label>
+                          <input type="text"  name="nicknameComment" maxlength="10"  minlength="3" class="form-control" id="nickname" aria-describedby="emailHelp" value=""></br>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+						  <label for="comment"><h3>Comment*</h3></label>
+						  <textarea class="form-control" maxlength="200" rows="5" id="comment" name="comment"></textarea>
+						  <br><br><br>
+						</div> 
+						<div class="col-lg-6 text-center offset-3">		
+                           <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm ">Send Comment</button>
+                        </div>
+	                </div>
+                </form>
+	   		</div> 
    </section>
    
   
