@@ -18,6 +18,17 @@
     
     <!-- Enllaç a l'arxiu CSS Extern -->
 	<link rel="stylesheet" type="text/css" href="styles.css">
+	
+	<!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <!-- Contact form JS-->
+    <script src="assets/mail/jqBootstrapValidation.js"></script>
+    <script src="assets/mail/contact_me.js"></script>
+    <!-- Core theme JS-->
+    <script src="scripts.js"></script>
         
 	<!-- Titol de la pàgina -->
     <title>Sudoers - Cursos</title>
@@ -67,64 +78,99 @@
                <div class="divider-custom-line"></div>
            </div>
            <!-- Cursos Grid Items-->
-           <div class="row">
-               <!-- Cursos Item 1-->
-               <div class="col-md-6 col-lg-4 mb-5">
-                   <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal1">
-                       <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                           <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+           
+
+	                   <form action="Cursos" method="get" name="cursos">
+	                   <h3>Selecciona tus cursos</h3>
+	                   <div class="row">
+	                   <div class="col-md-6 col-lg-4 mb-5 nopad text-center">	
+		                       <label class="image-checkbox">
+							      <img class="img-responsive h-100 w-100 p-4" src="python.png" />
+							      <input type="checkbox" name="image[]" value="" />
+							      <i class="fa fa-check hidden"></i>
+							    </label>
+		               </div>
+
+		               <div class="col-md-6 col-lg-4 nopad text-center">
+		                       <label class="image-checkbox">
+							      <img class="img-responsive h-100 w-100 p-4" src="Curso-maven.png" />
+							      <input type="checkbox" name="image[]" value="" />
+							      <i class="fa fa-check hidden"></i>
+							    </label>
+		               </div>
+		               
+		               <div class="col-md-6 col-lg-4 nopad text-center">		
+		                       <label class="image-checkbox">
+							      <img class="img-responsive h-100 w-100 p-4" src="Curso-javascript.jpg" />
+							      <input type="checkbox" name="image[]" value="" />
+							      <i class="fa fa-check hidden"></i>
+							    </label>
+		               </div>
+		               
+		               <div class="col-md-6 col-lg-4 nopad text-center">		
+		                       <label class="image-checkbox">
+							      <img class="img-responsive h-100 w-100 p-4" src="Curso-laravel.png" />
+							      <input type="checkbox" name="image[]" value="" />
+							      <i class="fa fa-check hidden"></i>
+							    </label>
+		               </div>
+		               
+		               <div class="col-md-6 col-lg-4 nopad text-center">		
+		                       <label class="image-checkbox">
+							      <img class="img-responsive h-100 w-100 p-4" src="Curso-react.png" />
+							      <input type="checkbox" name="image[]" value="" />
+							      <i class="fa fa-check hidden"></i>
+							    </label>
+		               </div>
+               
+		               <div class="col-md-6 col-lg-4 nopad text-center">
+		                       <label class="image-checkbox">
+							      <img class="img-responsive h-100 w-100 p-4" src="Curso-mongodb.png" />
+							      <input type="checkbox" name="image[]" value="" />
+							      <i class="fa fa-check hidden"></i>
+							    </label>
+							    <br><br><br><br>
+		               </div>
+		               
+		               <h3>Selecciona un método de pago</h3>
+		               <div id="metodopago" class="col-md-12 col-lg-12 nopad text-center">
+							 <label class="radio-inline p-4"><input type="radio" name="optradio" checked><h1>Cash</h1></label>
+							<label class="radio-inline p-4"><input type="radio" name="optradio"><h1>Credit card</h1></label>
+							<label class="radio-inline p-4"><input type="radio" name="optradio"><h1>PayPal</h1></label> 
+		               </div>
+		               
+		               <div class="col-md-12 col-lg-12">
+		               			<br><br><br><br>
+                              <label for="exampleInputEmail1"><h3>Nickname*</h3></label>
+                              <input type="text"  name="nickname" class="form-control" id="nickname" aria-describedby="emailHelp" value=""></br>
                        </div>
-                       <img class="img-fluid" src="python.png" alt="" />
-                   </div>
-               </div>
-               <!-- Cursos Item 2-->
-               <div class="col-md-6 col-lg-4 mb-5">
-                   <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal2">
-                       <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                           <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+      
+      
+      					<div class="col-md-12 col-lg-12">
+                              <label ><h3>Grade*</h3></label>
+                               <select class="browser-default custom-select">
+								  <option selected value="1">Basic</option>
+								  <option value="2">Medium</option>
+								  <option value="3">High</option>
+							   </select>
+							   <br><br><br>
                        </div>
-                       <img class="img-fluid" src="Curso-javascript.jpg" alt="" />
-                   </div>
-               </div>
-               <!-- Cursos Item 3-->
-               <div class="col-md-6 col-lg-4 mb-5">
-                   <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
-                       <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                           <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                       </div>
-                       <img class="img-fluid" src="Curso-react.png" alt="" />
-                   </div>
-               </div>
-               <!-- Cursos Item 4-->
-               <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
-                   <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
-                       <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                           <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                       </div>
-                       <img class="img-fluid" src="Curso-laravel.png" alt="" />
-                   </div>
-               </div>
-               <!-- Cursos Item 5-->
-               <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
-                   <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
-                       <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                           <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                       </div>
-                       <img class="img-fluid" src="Curso-maven.png" alt="" />
-                   </div>
-               </div>
-               <!-- Cursos Item 6-->
-               <div class="col-md-6 col-lg-4">
-                   <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
-                       <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                           <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
-                       </div>
-                       <img class="img-fluid" src="Curso-mongodb.png" alt="" />
-                   </div>
-               </div>
-           </div>
-       </div>
+      					
+      					<div class="col-lg-6 text-center offset-3">
+      					
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm ">Send</button>
+                        </div>
+
+					    </div>
+	                   </form>
+	                
+
+	   </div>
+               
    </section>
+   
+  
+
   	<!-- Footer-->
     <footer class="footer text-center">
         <div class="container">
@@ -156,16 +202,7 @@
    </div>
    
 	
-	<!-- Bootstrap core JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <!-- Third party plugin JS-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <!-- Contact form JS-->
-    <script src="assets/mail/jqBootstrapValidation.js"></script>
-    <script src="assets/mail/contact_me.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+	
   </body>
   
 </html>
