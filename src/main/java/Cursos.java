@@ -37,7 +37,22 @@ public class Cursos extends HttpServlet {
 		String nickname = request.getParameter("nicknameComment");
 		String comment = request.getParameter("comment");
 		
-		LOGGER.log(Level.INFO, nickname + " " + comment );
+		try {
+			if (comment.length()<=30) {
+				if (existeixNickname(nickname)) {
+					insertComment(nickname, comment);
+					response.sendRedirect("ComentarioOk.html");
+				}else {
+					response.sendRedirect("ComentarioNoOk.html");
+				}
+			} else {
+				response.sendRedirect("ComentarioNoOk.html");
+			}
+			
+		} catch (NullPointerException | SQLException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
+			response.sendRedirect("ComentarioNoOk.html");
+		}
 	}
 
 	/** This method will be called when a post request is made, 
@@ -55,7 +70,15 @@ public class Cursos extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 		String grade = request.getParameter("grade");
 		
-		LOGGER.log(Level.INFO, productsStr + " " + payment + " " + nickname + " " + grade);
+		try {
+			if (existeixNickname(nickname)) {
+				insertPurchase(nickname, productsStr, payment, grade);
+				response.sendRedirect("ReservaOk.html");
+			}
+		} catch (NullPointerException | SQLException | IOException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage());
+			response.sendRedirect("ReservaNoOk.html");
+		}
 	}
 
 	/**
@@ -64,7 +87,7 @@ public class Cursos extends HttpServlet {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean comprovaNickname(String nickname) throws SQLException, NullPointerException {
+	public boolean existeixNickname(String nickname) throws SQLException, NullPointerException {
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -93,5 +116,63 @@ public class Cursos extends HttpServlet {
 			con.close();
 		}
 		return false;
+	}
+	
+	/**
+	 * Insert a new comment into the database
+	 * @param nickname
+	 * @param comments
+	 * @throws SQLException
+	 */
+	public void insertComment(String nickname, String comments) throws SQLException {
+		Connection con = null;
+    	Statement stmt = null;
+    	
+    	try {
+    		SQLiteJDBC db = new SQLiteJDBC();
+    		con = db.conectar();
+    		con.setAutoCommit(false);
+    		stmt = con.createStatement();
+    		
+    		String sql = "INSERT INTO COMMENT (NICK, COMMENTS) " +
+                    "VALUES ('" + nickname+ "', '" + comments+ "');"; 
+    		
+    		stmt.executeUpdate(sql);
+    		con.commit();
+    		
+    	} catch (Exception e) {
+    		LOGGER.log(Level.SEVERE, e.getMessage());
+    	} finally {
+    		stmt.close();
+    		con.close();
+    	}
+    		LOGGER.log(Level.INFO, "Comment inserted successfully");
+		
+	}
+	
+	public void insertPurchase(String nickname, String products, String payment, String grade) throws SQLException {
+		Connection con = null;
+    	Statement stmt = null;
+    	
+    	try {
+    		SQLiteJDBC db = new SQLiteJDBC();
+    		con = db.conectar();
+    		con.setAutoCommit(false);
+    		stmt = con.createStatement();
+    		
+    		String sql = "INSERT INTO PURCHASE (NICK, PRODUCTS, PAYMENT, GRADE) " +
+                    "VALUES ('" + nickname+ "', '" + products+ "', '" + payment+ "', '" + grade+ "');"; 
+    		
+    		stmt.executeUpdate(sql);
+    		con.commit();
+    		
+    	} catch (Exception e) {
+    		LOGGER.log(Level.SEVERE, e.getMessage());
+    	} finally {
+    		stmt.close();
+    		con.close();
+    	}
+    	LOGGER.log(Level.INFO, "Purchase inserted successfully");
+		
 	}
 }
