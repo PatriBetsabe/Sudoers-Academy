@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 @WebServlet("/RegistroUsuario")
 public class RegistroUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOGGER = Logger.getLogger("main.java.Login");
+	private static final Logger LOGGER = Logger.getLogger("main.java.RegistroUsuario");
        
     /**
      * @see HttpServlet#HttpServlet()
