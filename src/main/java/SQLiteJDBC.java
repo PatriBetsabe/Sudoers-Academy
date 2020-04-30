@@ -1,27 +1,40 @@
 package main.java;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import java.util.Properties;
 
 /**
  * @author patricia
  * @see https://github.com/PatriBetsabe/Sudoers-Academy
  */
 public class SQLiteJDBC {
-	private static final Logger LOGGER = Logger.getLogger("main.java.Login");
+	private static final Logger LOGGER = Logger.getLogger("main.java.SQLiteJDBC");
 	
 	public static void main( String args[] ) throws SQLException {
 		SQLiteJDBC db = new SQLiteJDBC();
     	db.createCommentTable();
 	   }
 	
-	public Connection conectar() {
+	public Connection conectar() throws FileNotFoundException, IOException {
 		Connection c = null;
-	      
-	      try {
-	         Class.forName("org.sqlite.JDBC");
-	         c = DriverManager.getConnection("jdbc:sqlite:/home/patricia/eclipse-workspace/Sudoers-Academy/db.db");
+		File archivo = new File("/home/patricia/eclipse-workspace/Sudoers-Academy/src/main/resources/config.properties");
+		
+		try (InputStream inputStream = new FileInputStream(archivo)) {
+			Properties prop = new Properties();
+            prop.load(inputStream);
+            
+            String uri = prop.getProperty("URI");
+            
+            Class.forName("org.sqlite.JDBC");
+	        c = DriverManager.getConnection(uri);         
 	      } catch ( Exception e ) {
 	    	  LOGGER.log(Level.SEVERE, e.getMessage());
 	      }
