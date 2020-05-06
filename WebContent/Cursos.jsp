@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	
 <!doctype html>
 <html lang="es">
   <head>
@@ -36,20 +39,9 @@
   </head>
   
   <body id="page-top">
-  	<!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="Home.jsp#page-top"><img src="logoo.jpeg" alt="logo" height="60px;"></a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Cursos.html">Cursos</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Home.jsp#about">Acerca de</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Home.jsp#contact">Contacto</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Login.html">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  	
+  	<jsp:include page="Navigation.jsp" />
+  	
    <br/><br/>
    <!-- Masthead-->
    <header class="masthead bg-primary text-white text-center">
@@ -137,11 +129,26 @@
 							<label class="radio-inline p-4"><input type="radio" name="payment" value="paypal" ><h1>PayPal</h1></label> 
 		               </div>
 		               
-		               <div class="col-md-12 col-lg-12">
+		               <% if (session.getAttribute("user") != null) { 
+		%>
+		               
+                       
+                       <div class="col-md-12 col-lg-12">
+		               			<br><br><br><br>
+                              <label><h3>Nickname*</h3></label>
+                             <input type="text"  name="nickname" maxlength="10"  minlength="3" class="form-control" id="nickname"  value=${sessionScope.user}></br>
+                       </div>
+                       
+                       <% } else { 
+		%>
+						<div class="col-md-12 col-lg-12">
 		               			<br><br><br><br>
                               <label><h3>Nickname*</h3></label>
                               <input type="text"  name="nickname" maxlength="10"  minlength="3" class="form-control" id="nickname" ></br>
                        </div>
+		
+		
+		<% }  %>
       
       
       					<div class="col-md-12 col-lg-12">
@@ -168,10 +175,27 @@
                 <form action="Cursos" method="get" name="comment">
 	                <h3>Escribe un comentario</h3>
 	                <div class="row">
-	                	<div class="col-md-12 col-lg-12">	
-                          <label for="exampleInputEmail1"><h3>Nickname*</h3></label>
-                          <input type="text"  name="nicknameComment" maxlength="10"  minlength="3" class="form-control" id="nickname" aria-describedby="emailHelp" value=""></br>
-                        </div>
+	                	
+	                			               <% if (session.getAttribute("user") != null) { 
+		%>
+		               
+                       
+                       <div class="col-md-12 col-lg-12">
+		               			<br><br><br><br>
+                              <label><h3>Nickname*</h3></label>
+                              <input type="text"  name="nicknameComment" maxlength="10"  minlength="3" class="form-control" id="nickname"  value=${sessionScope.user}></br>
+                       </div>
+                       
+                       <% } else { 
+		%>
+						<div class="col-md-12 col-lg-12">
+		               			<br><br><br><br>
+                              <label><h3>Nickname*</h3></label>
+                              <input type="text"  name="nicknameComment" maxlength="10"  minlength="3" class="form-control" id="nickname" ></br>
+                       </div>
+		
+		
+		<% }  %>	
                         <div class="col-md-12 col-lg-12">
 						  <label for="comment"><h3>Comment*</h3></label>
 						  <textarea class="form-control" maxlength="200" rows="5" id="comment" name="comment"></textarea>
