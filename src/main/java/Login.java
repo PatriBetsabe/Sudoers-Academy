@@ -112,6 +112,44 @@ public class Login extends HttpServlet {
     	return pass.equals(password);
     }
     
+    /**
+     * Given a email, find a user and return it.
+     * @param email
+     * @return String
+     * @throws SQLException 
+     */
+    public String getUser(String email) throws SQLException, NullPointerException {
+    	Connection con = null;
+    	Statement stmt = null;
+    	ResultSet rs = null;
+    	String user = "";
+    	
+    	try {
+    		SQLiteJDBC db = new SQLiteJDBC();
+    		con = db.conectar();
+    		stmt = con.createStatement();
+    		
+    		rs = stmt.executeQuery("SELECT * "
+    				+ "FROM USER "
+    				+ "WHERE EMAIL = '"+ email + "'");
+    		
+    		while (rs.next()) {
+    			user = rs.getString("NICK");
+    		}
+            
+        } catch (Exception e) {
+    		LOGGER.log(Level.SEVERE, e.getMessage());
+    	    System.exit(0);
+    	    
+    	} finally {
+    		rs.close();
+    		stmt.close();
+    		con.close();
+    	}
+    	
+    	return user;
+    }
+    
     
 
 	/**
@@ -133,10 +171,11 @@ public class Login extends HttpServlet {
 		} else {
 			try {
 				if (this.coincideixPassword(email, password)) {
+					String user = this.getUser(email);
 					LOGGER.log(Level.INFO, "Login successful!");
 					HttpSession session = request.getSession(true);
-					session.setAttribute("user", email);
-					session.setMaxInactiveInterval(30); // 30 seconds
+					session.setAttribute("user", user);
+					session.setMaxInactiveInterval(300); // 300 seconds
 					response.sendRedirect("Home.jsp");
 				} else {
 					LOGGER.log(Level.INFO, "Contraseña inválida");
