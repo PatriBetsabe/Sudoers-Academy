@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -16,39 +19,21 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     
-    <!-- Enllaç a l'arxiu CSS Extern -->
+    <!-- EnllaÃ§ a l'arxiu CSS Extern -->
 	<link rel="stylesheet" type="text/css" href="styles.css">
         
-	<!-- Titol de la pàgina -->
-    <title>Sudoers - Registro ok!</title>
+	<!-- Titol de la pÃ gina -->
+    <title>Sudoers - Reserva ok!</title>
     
   </head>
   
   <body id="page-top">
-  	<!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="Home.jsp#page-top"><img src="logoo.jpeg" alt="logo" height="60px;"></a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Cursos.jsp">Cursos</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Home.jsp#about">Acerca de</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Home.jsp#contact">Contacto</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Login.html">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  	<jsp:include page="Navigation.jsp" />
    <br/><br/>
    <!-- Register Section-->
-    <section class="page-section" id="loginfail">
+    <section class="page-section" id="reservaOk">
     <div class="container">
-		<h1>El registro se ha hecho correctamente!</h1>
-		<div class="col-md-12 ">
-           <div class="form-group">
-              <p class="text-center"><a href="Login.html" id="signin">Ingresar</a></p>
-           </div>
-        </div>
+		<h1>La reserva se ha hecho correctamente, muchas gracias!</h1>
 		<br/><br/>
 		<br/><br/>
 		<br/><br/><br/><br/>
@@ -78,7 +63,7 @@
 
 	<!-- Copyright Section-->
     <section class="copyright py-4 text-center text-white">
-        <div class="container"><small>© 2020 Copyright: Patricia Lamadrid</small></div>
+        <div class="container"><small>Â© 2020 Copyright: Patricia Lamadrid</small></div>
     </section>
     
     
