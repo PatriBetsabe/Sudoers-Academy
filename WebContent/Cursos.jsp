@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 	
 <!doctype html>
 <html lang="es">
@@ -33,7 +33,7 @@
     <!-- Core theme JS-->
     <script src="scripts.js"></script>
         
-	<!-- Titol de la pàgina -->
+	<!-- Titol de la página -->
     <title>Sudoers - Cursos</title>
     
   </head>
@@ -46,7 +46,7 @@
    <!-- Masthead-->
    <header class="masthead bg-primary text-white text-center">
        <div class="container d-flex align-items-center flex-column">
-           <h1 class="masthead-heading text-uppercase mb-0">Inscríbete</h1>
+           <h1 class="masthead-heading text-uppercase mb-0">Inscribete</h1>
            <!-- Icon Divider-->
            <div class="divider-custom divider-light">
                <div class="divider-custom-line"></div>
@@ -122,7 +122,7 @@
 							    <br><br><br><br>
 		               </div>
 		               
-		               <h3>Selecciona un método de pago</h3>
+		               <h3>Selecciona un metodo de pago</h3>
 		               <div id="metodopago" class="col-md-12 col-lg-12 nopad text-center">
 							 <label class="radio-inline p-4"><input type="radio" name="payment" value="cash" checked><h1>Cash</h1></label>
 							<label class="radio-inline p-4"><input type="radio" name="payment" value="credit" ><h1>Credit card</h1></label>
@@ -232,7 +232,7 @@
 
 	<!-- Copyright Section-->
     <section class="copyright py-4 text-center text-white">
-        <div class="container"><small>© 2020 Copyright: Patricia Lamadrid</small></div>
+        <div class="container"><small>2020 Copyright: Patricia Lamadrid</small></div>
     </section>
     
     
