@@ -150,6 +150,14 @@ public class Cursos extends HttpServlet {
 		
 	}
 	
+	/**
+	 * Insert a new purchase into the database
+	 * @param nickname String that contains the name
+	 * @param products
+	 * @param payment
+	 * @param grade
+	 * @throws SQLException
+	 */
 	public void insertPurchase(String nickname, String products, String payment, String grade) throws SQLException {
 		Connection con = null;
     	Statement stmt = null;
