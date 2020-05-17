@@ -1,4 +1,7 @@
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>s
+
+<!DOCTYPE html>
 <html lang="es">
   <head>
    	 <!-- Required meta tags -->
@@ -16,43 +19,62 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     
-    <!-- Enllaç a l'arxiu CSS Extern -->
+    <!-- EnllaÃ§ a l'arxiu CSS Extern -->
 	<link rel="stylesheet" type="text/css" href="styles.css">
         
-	<!-- Titol de la pàgina -->
-    <title>Sudoers - Reserva no ok!</title>
+	<!-- Titol de la pÃ gina -->
+    <title>Sudoers - Registrar</title>
     
   </head>
-  
   <body id="page-top">
-  	<!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="Home.jsp#page-top"><img src="logoo.jpeg" alt="logo" height="60px;"></a><button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Cursos.jsp">Cursos</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Home.jsp#about">Acerca de</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Home.jsp#contact">Contacto</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Login.html">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-   <br/><br/>
-   <!-- Register Section-->
-    <section class="page-section" id="reservafail">
-    <div class="container">
-		<h1>La reserva no se ha podido realizar correctamente, revisa tus datos e inténtalo de nuevo!</h1>
-		<br/><br/>
-		<br/><br/>
-		<br/><br/><br/><br/>
-		<br/><br/>
-		<br/><br/><br/><br/>
-
-	</div>
-	</section>
-  	<!-- Footer-->
+  	<jsp:include page="Navigation.jsp" />
+  	
+    <br/><br/>
+	<!-- Register Section-->
+     <section class="page-section" id="register">
+         <div class="container">
+             <!-- Register Section Heading-->
+             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">RegÃ­strate</h2>
+             <!-- Icon Divider-->
+             <div class="divider-custom">
+                 <div class="divider-custom-line"></div>
+                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                 <div class="divider-custom-line"></div>
+             </div>
+             <!-- Register Section Form-->
+             <div class="row">
+				<div class="col-lg-8 mx-auto">
+					<div class="myform form ">
+	                   <form action="RegistroUsuario" method="post" name="registration">
+	                   		<div class="form-group">
+                              <label for="exampleInputEmail1">Nickname*</label>
+                              <input type="text"  name="nickname" class="form-control" id="nickname" aria-describedby="emailHelp" value="patricia">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Email*</label>
+                              <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" value="patricia@gmail.com">
+                           </div>
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Password*</label>
+                              <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" value='gr3at@3wdsG'>
+                           </div>
+                           <div class="col-md-12 text-center mb-3">
+                              <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Registrar</button>
+                           </div>
+                           <div class="col-md-12 ">
+                              <div class="form-group">
+                                 <p class="text-center"><a href="Login.html" id="signin">Ya tienes una cuenta?</a></p>
+                              </div>
+                           </div>
+                           <br><br>
+	                  </form>
+					</div>	  
+				 </div>
+			</div>
+         </div>
+     </section>
+      
+	<!-- Footer-->
     <footer class="footer text-center">
         <div class="container">
             <div class="row">
@@ -73,7 +95,7 @@
 
 	<!-- Copyright Section-->
     <section class="copyright py-4 text-center text-white">
-        <div class="container"><small>© 2020 Copyright: Patricia Lamadrid</small></div>
+        <div class="container"><small>Â© 2020 Copyright: Patricia Lamadrid</small></div>
     </section>
     
     
@@ -94,5 +116,6 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
   </body>
-  
+
+</body>
 </html>

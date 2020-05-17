@@ -41,17 +41,17 @@ public class Cursos extends HttpServlet {
 			if (comment.length()<=30) {
 				if (existeixNickname(nickname)) {
 					insertComment(nickname, comment);
-					response.sendRedirect("ComentarioOk.html");
+					response.sendRedirect("ComentarioOk.jsp");
 				}else {
-					response.sendRedirect("ComentarioNoOk.html");
+					response.sendRedirect("ComentarioNoOk.jsp");
 				}
 			} else {
-				response.sendRedirect("ComentarioNoOk.html");
+				response.sendRedirect("ComentarioNoOk.jsp");
 			}
 			
 		} catch (NullPointerException | SQLException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
-			response.sendRedirect("ComentarioNoOk.html");
+			response.sendRedirect("ComentarioNoOk.jsp");
 		}
 	}
 
@@ -73,11 +73,13 @@ public class Cursos extends HttpServlet {
 		try {
 			if (existeixNickname(nickname)) {
 				insertPurchase(nickname, productsStr, payment, grade);
-				response.sendRedirect("ReservaOk.html");
+				response.sendRedirect("ReservaOk.jsp");
+			}else {
+				response.sendRedirect("ReservaNoOk.jsp");
 			}
 		} catch (NullPointerException | SQLException | IOException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage());
-			response.sendRedirect("ReservaNoOk.html");
+			response.sendRedirect("ReservaNoOk.jsp");
 		}
 	}
 

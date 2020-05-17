@@ -166,7 +166,7 @@ public class RegistroUsuario extends HttpServlet {
      */
     public boolean validaRegex(HttpServletRequest request, HttpServletResponse response, String nickname, String email, String password) throws ServletException, IOException {  
 		if (!this.validaEmail(email) && !this.validaNickName(nickname) && !this.validaPassword(password)) {
-			getServletContext().getRequestDispatcher("/LoginNoOk.html").forward(request, response);
+			getServletContext().getRequestDispatcher("/LoginNoOk.jsp").forward(request, response);
 		}
 		return true;
     }
@@ -230,12 +230,12 @@ public class RegistroUsuario extends HttpServlet {
 			if (!existeUser) {
 				try {
 					this.insertaUser(nickname, email, password);
-					response.sendRedirect("RegistroOk.html");
+					response.sendRedirect("RegistroOk.jsp");
 				} catch (SQLException e) {
 					LOGGER.log(Level.SEVERE, e.getMessage());
 				}
 			} else {
-				response.sendRedirect("LoginNoOk.html");
+				response.sendRedirect("LoginNoOk.jsp");
 			}
 		}
 	}

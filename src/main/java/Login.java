@@ -162,12 +162,12 @@ public class Login extends HttpServlet {
 		try {
 			existeUser = this.existeixEmail(email);
 		} catch (SQLException e) {
-			response.sendRedirect("LoginNoOk.html");
+			response.sendRedirect("LoginNoOk.jsp");
 		}
 		
 		if (!existeUser) {
 			LOGGER.log(Level.INFO, "El email no existe.");
-			response.sendRedirect("LoginNoOk.html");
+			response.sendRedirect("LoginNoOk.jsp");
 		} else {
 			try {
 				if (this.coincideixPassword(email, password)) {
@@ -179,10 +179,10 @@ public class Login extends HttpServlet {
 					response.sendRedirect("Home.jsp");
 				} else {
 					LOGGER.log(Level.INFO, "Contraseña inválida");
-					response.sendRedirect("LoginNoOk.html");
+					response.sendRedirect("LoginNoOk.jsp");
 				}
 			} catch (NullPointerException | SQLException | IOException e) {
-				response.sendRedirect("LoginNoOk.html");
+				response.sendRedirect("LoginNoOk.jsp");
 			}
 		}	
 	}
